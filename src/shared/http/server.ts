@@ -3,7 +3,7 @@ import express, { NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import routes from './routes';
 import AppError from '../errors/appError';
-import '@shared/typeorm';
+import 'src/shared/typeorm';
 
 const app = express();
 
