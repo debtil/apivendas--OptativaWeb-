@@ -6,6 +6,7 @@ const productRouter = Router();
 const productsController = new ProductsController();
 
 productRouter.get('/', productsController.index);
+
 productRouter.get('/:id', celebrate({
     [Segments.PARAMS]: {id: Joi.string().uuid().required()}
 }), productsController.show);
