@@ -9,9 +9,4 @@ routes.use('/products', productRouter)
 routes.use('/users', usersRouter)
 routes.use('/sessions', sessionsRouter)
 
-/*  apenas para teste
-    routes.get('/', (request, response) => {
-    return response.json({message: "Hello Dev!"});
-})*/
-
 export default routes;
