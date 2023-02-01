@@ -2,7 +2,7 @@ import { hash } from "bcryptjs"
 import AppError from "src/shared/errors/appError"
 import { getCustomRepository } from "typeorm"
 import User from "../typeorm/entities/User"
-import UserstRepository from "../typeorm/repositories/UsersRepository"
+import UsersRepository from "../typeorm/repositories/UsersRepository"
 
 interface IRequest {
     name: string
@@ -14,7 +14,7 @@ export default class CreateUserService {
 
     public async execute({name, email, password}: IRequest): Promise<User> {
 
-        const usersRepository = getCustomRepository(UserstRepository)
+        const usersRepository = getCustomRepository(UsersRepository)
 
         const emailExists = await usersRepository.findByEmail(email)
 
