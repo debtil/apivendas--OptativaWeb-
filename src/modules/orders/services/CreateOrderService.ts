@@ -21,7 +21,7 @@ export default class CreateOrderService{
         const ordersRepository = getCustomRepository(OrderRepository);
         const customerReository = getCustomRepository(CustomersRepository);
         const productsRepository = getCustomRepository(ProductRepository);
-
+        
         const customerExists = await customerReository.findById(customer_id);
         if(!customerExists){
             throw new AppError('Could not find customer');
@@ -30,7 +30,7 @@ export default class CreateOrderService{
         if(!existsProducts.length){
             throw new AppError('Could not find products');
         }
-
+    
         const existsProductsIds = existsProducts.map((product) => product.id);
         const checkInexistentProduct = products.filter(
             product => !existsProductsIds.includes(product.id)
@@ -44,7 +44,9 @@ export default class CreateOrderService{
                 prod => prod.id === product.id
             )[0].quantity < product.quantity
         );
+        
         if(quantityAvaliable.length){
+            
             throw new AppError(`The quantity ${quantityAvaliable[0].quantity} is not available for ${quantityAvaliable[0].id}`);
         }
 
@@ -53,17 +55,18 @@ export default class CreateOrderService{
             quantity: product.quantity,
             price: existsProducts.filter(prod => prod.id === product.id)[0].price
         }))
-
+        
         const order = await ordersRepository.createOrder({
             customer: customerExists,
             products: serializerProduct
         });
+        console.log(customer_id)
         const {order_products} = order;
         const updateProductQuantity = order_products.map(product => ({
-            id: product.product.id, 
-            quantity: existsProducts.filter(p => p.id === product.product.id)[0].quantity - product.quantity
+            id: product.product_id, 
+            quantity: existsProducts.filter(p => p.id === product.product_id)[0].quantity - product.quantity
         }))
-
+        
         await productsRepository.save(updateProductQuantity);
         return order;
     }
