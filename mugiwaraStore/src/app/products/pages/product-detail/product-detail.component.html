@@ -1,0 +1,14 @@
+<h3>API de cadastro de produtos</h3>
+<form [formGroup]="form_editar" (ngSubmit)="submitForm()" class="form">
+    <label>Nome: </label>
+    <input formControlName = "name">
+    <br>
+    <label>Preço: </label>
+    <input formControlName = "price">
+    <br>
+    <label>Quantidade: </label>
+    <input formControlName = "quantity">
+    <br>
+    <button type="submit">Salvar edição</button>
+</form>
+

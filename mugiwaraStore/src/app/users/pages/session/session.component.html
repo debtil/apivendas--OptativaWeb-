@@ -1,0 +1,13 @@
+<h3>Login </h3>
+
+<form [formGroup]="form_login" (ngSubmit)="submitForm()">
+    <label>Email: </label>
+    <input formControlName = "email">
+    <br>
+    <label>Senha: </label>
+    <input formControlName = "password" type="password">
+    <br>
+    <button type="submit">Login</button>
+</form>
+
+<a (click)="goToCreate()">Não tem conta?</a>

@@ -1,0 +1,16 @@
+<h3>Criar conta </h3>
+
+<form [formGroup]="form_create" (ngSubmit)="submitForm()">
+    <label>Nome: </label>
+    <input formControlName = "name">
+    <br>
+    <label>Email: </label>
+    <input formControlName = "email">
+    <br>
+    <label>Senha: </label>
+    <input formControlName = "password" type="password">
+    <br>
+    <button type="submit">Cadastrar</button>
+</form>
+
+<a (click)="goToLogin()">Já possui conta?</a>

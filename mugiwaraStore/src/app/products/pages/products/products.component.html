@@ -1,0 +1,29 @@
+<h3>API de cadastro de produtos</h3>
+<form [formGroup]="form_cadastrar" (ngSubmit)="submitForm()">
+    <label>Nome: </label>
+    <input formControlName = "name">
+    <br>
+    <label>Preço: </label>
+    <input formControlName = "price">
+    <br>
+    <label>Quantidade: </label>
+    <input formControlName = "quantity">
+    <br>
+    <button type="submit">Cadastrar</button>
+</form>
+
+<br>
+<hr>
+<ul *ngFor="let product of this.products">
+    <li>
+        <p>Produto: {{product.name}}</p>
+        <p>Preço: {{product.price}}</p>
+        <p>Quantidade: {{product.quantity}}</p>
+    </li>
+    <li>
+        <p>
+            <button (click)="editar(product)">Editar</button>
+            <button (click)="excluir(product)" style="color: red;">Excluir</button>
+        </p>
+    </li>
+</ul>
